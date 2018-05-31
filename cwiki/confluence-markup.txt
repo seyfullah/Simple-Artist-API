@@ -1,0 +1,202 @@
+h1. Simple Artist API A simple API to understand the Swagger Specification in greater detail
+
+*Version:* 1.0.0
+
+----
+
+{toc:printable=true|style=square|minLevel=2|maxLevel=3|type=list|outline=false|include=.*}
+
+h2. Endpoints
+
+    h3. artistsGet
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /artists
+    {code}
+    *Summary:* 
+    *Description:* Returns a list of artists
+
+
+    h4. Parameters
+
+
+
+        h5. Query Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |limit |Limits the number of items on a page |(x) | |  |
+
+|offset |Specifies the page number of the artists to be displayed |(x) | |  |
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully returned a list of artists
+        {code:title=Response Type}
+array[Artist]
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully returned a list of artists",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Artist"
+    }
+  }
+}
+        {code}
+        *Status Code:* 400
+        *Message:*     Invalid request
+        {code:title=Response Type}
+inline_response_400
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Invalid request",
+  "schema" : {
+    "$ref" : "#/definitions/inline_response_400"
+  }
+}
+        {code}
+    ----
+
+    h3. artistsPost
+    {status:colour=Yellow|title=post|subtle=false}
+    {code}
+    post /artists
+    {code}
+    *Summary:* 
+    *Description:* Lets a user post a new artist
+
+
+    h4. Parameters
+
+        h5. Body Parameter
+        ||Name||Description||Required||Default||Pattern||
+        |artist |creates a new artist in our database |(x) | |  |
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully created a new artist
+        {code:title=Response Type}
+
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully created a new artist"
+}
+        {code}
+        *Status Code:* 400
+        *Message:*     Invalid request
+        {code:title=Response Type}
+inline_response_400
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Invalid request",
+  "schema" : {
+    "$ref" : "#/definitions/inline_response_400"
+  }
+}
+        {code}
+    ----
+
+    h3. artistsUsernameGet
+    {status:colour=Yellow|title=get|subtle=false}
+    {code}
+    get /artists/{username}
+    {code}
+    *Summary:* 
+    *Description:* Obtain information about an artist from his or her unique username
+
+
+    h4. Parameters
+        h5. Path Parameters
+        ||Name||Description||Required||Default||Pattern||
+        |username | |(/) | |  |
+
+
+
+
+
+
+
+
+    h4. Responses
+        *Status Code:* 200
+        *Message:*     Successfully returned an artist
+        {code:title=Response Type}
+inline_response_200
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Successfully returned an artist",
+  "schema" : {
+    "$ref" : "#/definitions/inline_response_200"
+  }
+}
+        {code}
+        *Status Code:* 400
+        *Message:*     Invalid request
+        {code:title=Response Type}
+inline_response_400
+        {code}
+        See [#models]
+
+
+
+        {code:title=Response Schema |collapse=true}
+{
+  "description" : "Invalid request",
+  "schema" : {
+    "$ref" : "#/definitions/inline_response_400"
+  }
+}
+        {code}
+    ----
+
+h2. Models
+
+        h3. Artist
+        ||Field Name||Required||Type||Description||
+         |artist_name | |String | |
+ |artist_genre | |String | |
+ |albums_recorded | |Integer | |
+ |username | |String | |
+        h3. Inline_response_200
+        ||Field Name||Required||Type||Description||
+         |artist_name | |String | |
+ |artist_genre | |String | |
+ |albums_recorded | |Integer | |
+        h3. Inline_response_400
+        ||Field Name||Required||Type||Description||
+         |message | |String | |
